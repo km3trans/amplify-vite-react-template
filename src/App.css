@@ -1,42 +1,71 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/*
+  This file is used for the main application styles.
+  Tailwind CSS classes are used directly in the components for most styling,
+  but you can add custom CSS here for specific needs.
+*/
+
+.game-background {
+  background-image: url('https://media.giphy.com/media/l4FGp6wKxS6xzRPxS/giphy.gif');
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.game-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+  z-index: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Base styles for the game container and its children */
+.game-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Responsive grid for game tiles */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .game-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Styling for game buttons and tiles */
+.game-button {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  color: white;
+  transition-property: all;
+  transition-duration: 300ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.card {
-  padding: 2em;
+.game-button:hover {
+  transform: scale(1.05);
 }
 
-.read-the-docs {
-  color: #888;
+.disabled-tile {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: transparent !important;
+  color: #a0a0a0;
+  border: 1px solid #a0a0a0;
 }
